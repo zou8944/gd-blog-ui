@@ -25,6 +25,9 @@ export default {
           .catch(error => {
             console.log(error)
           })
+    },
+    generateArticleUrl(id) {
+      return "/blogs/" + id
     }
   },
   mounted() {
@@ -59,7 +62,7 @@ export default {
         <div class="card-body">
           <h5 class="card-title">{{ article.title }}</h5>
           <p class="card-text text-start">{{ article.summary }}</p>
-          <a href="#/detail" class="btn btn-primary">查看全文 ...</a>
+          <router-link :to="generateArticleUrl(article.id)" class="btn btn-primary">查看全文 ...</router-link>
         </div>
       </div>
     </div>

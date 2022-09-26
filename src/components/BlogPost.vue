@@ -30,8 +30,9 @@ export default {
     }
   },
   created() {
+    console.log(this.$route.params.id)
     axios
-        .get("http://localhost:15000/blogs/31")
+        .get("http://localhost:15000/blogs/" + this.$route.params.id)
         .then(response => {
           console.log(response)
           this.article = response.data.data
