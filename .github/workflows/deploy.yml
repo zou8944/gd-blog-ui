@@ -4,7 +4,7 @@ jobs:
   build-nginx:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
+      - run: pwd && ls -a
       - run: docker build -t gd-blog-ui .
       - run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
       - run: docker push gd-blog-ui
