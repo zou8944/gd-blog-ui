@@ -1,0 +1,10 @@
+name: Create and upload gd-blog-ui docker image
+on: [push]
+jobs:
+  build-nginx:
+    runs-on: ubuntu-latest
+    steps:
+      - run: docker build -t gd-blog-ui .
+      - run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
+      - run: docker push gd-blog-ui
+      - run: docker logout
