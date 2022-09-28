@@ -10,7 +10,7 @@ jobs:
         run: |
           npm install
           npm run build
-          docker build -t registry.cn-shenzhen.aliyuncs.com/zou8944/gd-blog-ui:latest .
+          docker build -t registry.cn-shenzhen.aliyuncs.com/zou8944/gd-blog-ui:latest --platform linux/amd64 .
       - name: Publish to docker hub
         run: |
           docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
