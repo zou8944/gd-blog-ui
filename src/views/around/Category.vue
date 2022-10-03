@@ -1,5 +1,4 @@
 <script>
-import axios from "axios";
 import {fetchCategoryList} from "@/api/query";
 
 export default {
@@ -21,6 +20,9 @@ export default {
           .catch(error => {
             console.log(error)
           })
+    },
+    generateCategoryLink(id, name) {
+      return "/?cid=" + id + "&cname=" + name
     }
   },
   mounted() {
@@ -35,7 +37,7 @@ export default {
         <div class="card-body">
           <h5 class="card-title">分类</h5>
           <ul class="card-text text-start" v-if="loadSucceed" v-for="category in categories">
-            <a href="#">{{ category.name }} ({{ category.blog_count }})</a>
+            <router-link :to="generateCategoryLink(category.id, category.name)">{{ category.name }} ({{ category.blog_count }})</router-link>
           </ul>
           <ul class="card-text text-start placeholder-glow" v-else v-for="_ in placeHolderCount">
             <span class="placeholder col-12"></span>

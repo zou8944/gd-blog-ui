@@ -33,8 +33,8 @@ export default {
     }
   },
   methods: {
-    loadArticles(pageSize, pageNo) {
-      fetchBlogList(pageSize, pageNo)
+    loadArticles(cid, pageSize, pageNo) {
+      fetchBlogList(cid, pageSize, pageNo)
           .then(response => {
             console.log(response)
             this.articles = response.data.data.articles
@@ -54,8 +54,14 @@ export default {
       return "/blogs/" + id
     }
   },
-  mounted() {
-    this.loadArticles(this.page.size, this.page.currentNo + 1)
+  created() {
+    let cid = this.$route.query.cid
+    this.loadArticles(cid, this.page.size, this.page.currentNo + 1)
+  },
+  beforeRouteUpdate(to, from, next) {
+    let cid = this.$route.query.cid
+    this.loadArticles(cid, this.page.size, this.page.currentNo + 1)
+    next()
   }
 }
 </script>
@@ -89,15 +95,15 @@ export default {
         <ul class="pagination justify-content-center">
           <li class="page-item">
             <a class="page-link disabled" v-if="page.currentNo == 1">&lt;&lt;</a>
-            <a class="page-link" @click="loadArticles(page.size, page.currentNo - 1)" v-else>&lt;&lt;</a>
+            <a class="page-link" @click="loadArticles(0, page.size, page.currentNo - 1)" v-else>&lt;&lt;</a>
           </li>
           <li class="page-item" v-for="no in page.count">
-            <a class="page-link" @click="loadArticles(page.size, no)" v-if="no != page.currentNo">{{ no }}</a>
+            <a class="page-link" @click="loadArticles(0, page.size, no)" v-if="no != page.currentNo">{{ no }}</a>
             <a class="page-link active" aria-current="page" v-else>{{ no }}</a>
           </li>
           <li class="page-item">
             <a class="page-link disabled" v-if="page.currentNo == page.count">&gt;&gt;</a>
-            <a class="page-link" @click="loadArticles(page.size, page.currentNo + 1)" v-else>&gt;&gt;</a>
+            <a class="page-link" @click="loadArticles(0, page.size, page.currentNo + 1)" v-else>&gt;&gt;</a>
           </li>
         </ul>
       </nav>

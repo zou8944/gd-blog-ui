@@ -8,13 +8,14 @@ const router = createRouter({
         {
             path: "/",
             component: BlogList,
-            props: {
-
+            query: {
+                "cid": 0,
+                "cname": ""
             }
         },
         {
             path: "/blogs/:id",
-            component: BlogPost
+            component: BlogPost,
         }
     ],
     scrollBehavior(to, from, savedPosition) {

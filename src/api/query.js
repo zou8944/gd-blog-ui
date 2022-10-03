@@ -1,9 +1,14 @@
 import axios from "axios";
 
 const host = "https://zou8944.com"
+// const host = "localhost"
 
-export function fetchBlogList(pageSize, pageNo) {
-    return axios.get(host + "/api/blogs?pageSize=" + pageSize + "&pageNo=" + pageNo)
+export function fetchBlogList(cid, pageSize, pageNo) {
+    let url = host + "/api/blogs?pageSize=" + pageSize + "&pageNo=" + pageNo
+    if (cid) {
+        url = url + "&cid=" + cid
+    }
+    return axios.get(url)
 }
 
 export function fetchBlogDetail(id) {
