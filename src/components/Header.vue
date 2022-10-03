@@ -1,5 +1,7 @@
-<!--头部，就是一张图-->
-<div class="top"></div>
+<template>
+  <!--头部，就是一张图-->
+  <div class="top"></div>
+</template>
 
 <style>
 .top {

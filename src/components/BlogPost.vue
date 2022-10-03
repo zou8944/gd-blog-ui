@@ -80,6 +80,9 @@ export default {
 .card {
   padding-top: 1em;
 }
+#article-content img {
+  max-width: 100%;
+}
 #article-content h1 {
   font-size: 1.6em;
 }
