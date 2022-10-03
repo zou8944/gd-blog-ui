@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
-import BlogList from "@/components/BlogList.vue";
-import BlogPost from "@/components/BlogPost.vue";
+import BlogList from "@/views/detail/BlogList.vue";
+import BlogPost from "@/views/detail/BlogPost.vue";
 
 const router = createRouter({
     history: createWebHistory(),

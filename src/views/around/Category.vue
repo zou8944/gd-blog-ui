@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import {fetchCategoryList} from "@/api/query";
 
 export default {
   data() {
@@ -11,8 +12,7 @@ export default {
   },
   methods: {
     loadCategories(limit) {
-      axios
-          .get("https://zou8944.com/api/categories?limit=" + limit)
+      fetchCategoryList(limit)
           .then(response => {
             console.log(response)
             this.categories = response.data.data

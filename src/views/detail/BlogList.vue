@@ -1,7 +1,7 @@
 <script>
-import axios from "axios";
 import * as marked from 'marked'
 import hljs from "highlight.js";
+import {fetchBlogList} from "@/api/query";
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -34,8 +34,7 @@ export default {
   },
   methods: {
     loadArticles(pageSize, pageNo) {
-      axios
-          .get("https://zou8944.com/api/blogs?pageSize=" + pageSize + "&pageNo=" + pageNo)
+      fetchBlogList(pageSize, pageNo)
           .then(response => {
             console.log(response)
             this.articles = response.data.data.articles
@@ -106,8 +105,8 @@ export default {
 </template>
 
 <style>
-  .markdown-list h1, .markdown-list h2, .markdown-list h3, .markdown-list h4 {
-    font-size: 1em;
-    font-weight: normal;
-  }
+.markdown-list h1, .markdown-list h2, .markdown-list h3, .markdown-list h4 {
+  font-size: 1em;
+  font-weight: normal;
+}
 </style>

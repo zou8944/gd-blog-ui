@@ -1,16 +1,15 @@
 <script setup>
-import Header from './components/Header.vue';
-import Menu from './components/Menu.vue';
-import Container from './components/Container.vue';
-import Profile from './components/Profile.vue';
-import Category from './components/Category.vue';
-import Tag from './components/Tag.vue';
-import Footer from './components/Footer.vue';
+import Header from './views/around/Header.vue';
+import Menu from './views/around/Menu.vue';
+import Layout from './layout/Layout.vue';
+import Profile from './views/around/Profile.vue';
+import Category from './views/around/Category.vue';
+import Footer from './views/around/Footer.vue';
 </script>
 
 <template>
   <Header></Header>
-  <Container>
+  <Layout>
     <template #menu>
       <Menu></Menu>
     </template>
@@ -24,6 +23,6 @@ import Footer from './components/Footer.vue';
     <template #footer>
       <Footer></Footer>
     </template>
-  </Container>
+  </Layout>
 </template>
 

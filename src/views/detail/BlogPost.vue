@@ -2,6 +2,7 @@
 import axios from "axios";
 import * as marked from 'marked'
 import hljs from "highlight.js";
+import {fetchBlogDetail} from "@/api/query";
 
 export default {
   data() {
@@ -37,8 +38,7 @@ export default {
     link.href = 'https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css'
     document.head.appendChild(link)
 
-    axios
-        .get("https://zou8944.com/api/blogs/" + this.$route.params.id)
+    fetchBlogDetail(this.$route.params.id)
         .then(response => {
           this.article = response.data.data
           this.loadSucceed = true

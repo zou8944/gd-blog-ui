@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+import {fetchTagList} from "@/api/query";
 
 export default {
   data() {
@@ -9,8 +9,7 @@ export default {
   },
   methods: {
     loadTags(limit) {
-      axios
-          .get("https://zou8944.com/api/tags?limit=" + limit)
+      fetchTagList(limit)
           .then(response => {
             console.log(response)
             this.tags = response.data.data
