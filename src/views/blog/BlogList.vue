@@ -26,7 +26,7 @@ export default {
       placeHolderCount: 3,
       articles: [],
       page: {
-        currentNo: 0,
+        currentNo: 1,
         count: 1,
         size: 10,
       }
@@ -56,13 +56,8 @@ export default {
   },
   created() {
     let cid = this.$route.query.cid
-    this.loadArticles(cid, this.page.size, this.page.currentNo + 1)
+    this.loadArticles(cid, this.page.size, this.page.currentNo)
   },
-  beforeRouteUpdate(to, from, next) {
-    let cid = this.$route.query.cid
-    this.loadArticles(cid, this.page.size, this.page.currentNo + 1)
-    next()
-  }
 }
 </script>
 <template>

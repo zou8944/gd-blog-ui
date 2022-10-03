@@ -29,7 +29,7 @@ export default {
       <Menu></Menu>
     </template>
     <template #content>
-      <router-view @changeToc="changeToc"></router-view>
+      <router-view :key="$route.fullPath" @changeToc="changeToc"></router-view>
     </template>
     <template #side-card>
       <Profile></Profile>
