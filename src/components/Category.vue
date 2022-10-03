@@ -4,16 +4,19 @@ import axios from "axios";
 export default {
   data() {
     return {
+      placeHolderCount: 3,
+      loadSucceed: false,
       categories: []
     }
   },
   methods: {
     loadCategories(limit) {
       axios
-          .get("http://localhost:15000/categories?limit=" + limit)
+          .get("https://zou8944.com/api/categories?limit=" + limit)
           .then(response => {
             console.log(response)
             this.categories = response.data.data
+            this.loadSucceed = true
           })
           .catch(error => {
             console.log(error)
@@ -31,8 +34,11 @@ export default {
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">分类</h5>
-          <ul class="card-text text-start" v-for="category in categories">
+          <ul class="card-text text-start" v-if="loadSucceed" v-for="category in categories">
             <a href="#">{{ category.name }} ({{ category.blog_count }})</a>
+          </ul>
+          <ul class="card-text text-start placeholder-glow" v-else v-for="_ in placeHolderCount">
+            <span class="placeholder col-12"></span>
           </ul>
         </div>
       </div>

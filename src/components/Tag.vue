@@ -10,7 +10,7 @@ export default {
   methods: {
     loadTags(limit) {
       axios
-          .get("http://localhost:15000/tags?limit=" + limit)
+          .get("https://zou8944.com/api/tags?limit=" + limit)
           .then(response => {
             console.log(response)
             this.tags = response.data.data

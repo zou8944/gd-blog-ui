@@ -20,7 +20,6 @@ import Footer from './components/Footer.vue';
     <template #side-card>
       <Profile></Profile>
       <Category></Category>
-      <Tag></Tag>
     </template>
     <template #footer>
       <Footer></Footer>
