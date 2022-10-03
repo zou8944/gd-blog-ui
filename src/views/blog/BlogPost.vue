@@ -1,10 +1,14 @@
 <script>
-import axios from "axios";
 import * as marked from 'marked'
 import hljs from "highlight.js";
 import {fetchBlogDetail} from "@/api/query";
 
 export default {
+  methods: {
+    updateToc(toc) {
+      this.$emit("changeToc", toc)
+    }
+  },
   data() {
     return {
       loadSucceed: false,
@@ -13,8 +17,30 @@ export default {
   },
   computed: {
     compileHtml() {
+      const toc = [];
+      const renderer = (function () {
+        const renderer = new marked.Renderer();
+        renderer.heading = function (text, level, raw) {
+          const anchor = this.options.headerPrefix + raw.toLowerCase().replace(/[^\w\\u4e00-\\u9fa5]]+/g, '-');
+          toc.push({
+            anchor: anchor,
+            level: level,
+            text: text
+          });
+          return '<h'
+              + level
+              + ' id="'
+              + anchor
+              + '">'
+              + text
+              + '</h'
+              + level
+              + '>\n';
+        }
+        return renderer
+      })();
       marked.setOptions({
-        renderer: new marked.Renderer(),
+        renderer: renderer,
         highlight: function (code, lang) {
           const language = hljs.getLanguage(lang) ? lang : 'plaintext';
           return hljs.highlight(code, {language}).value;
@@ -28,16 +54,12 @@ export default {
         smartypants: true,
         xhtml: true
       });
-      return marked.parse(String(this.article.content))
+      let contentHtml = marked.parse(String(this.article.content))
+      this.updateToc(toc)
+      return contentHtml
     }
   },
   created() {
-    const link = document.createElement('link');
-    link.type = 'text/css'
-    link.rel = 'stylesheet'
-    link.href = 'https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css'
-    document.head.appendChild(link)
-
     fetchBlogDetail(this.$route.params.id)
         .then(response => {
           this.article = response.data.data
@@ -46,6 +68,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+  },
+  beforeUnmount() {
+    this.updateToc("")
   }
 }
 </script>
@@ -80,18 +105,23 @@ export default {
 .card {
   padding-top: 1em;
 }
+
 #article-content img {
   max-width: 100%;
 }
+
 #article-content h1 {
   font-size: 1.6em;
 }
+
 #article-content h2 {
   font-size: 1.4em;
 }
+
 #article-content h3 {
   font-size: 1.2em;
 }
+
 #article-content h4 {
   font-size: 1.0em;
 }

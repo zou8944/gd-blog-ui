@@ -41,6 +41,7 @@ export default {
             this.page.count = Math.ceil(response.data.data.articleCount / this.page.size)
             this.page.currentNo = pageNo
             this.loadSucceed = true
+            window.scrollTo(0, 0)
           })
           .catch(error => {
             console.log(error)
@@ -107,6 +108,6 @@ export default {
 <style>
 .markdown-list h1, .markdown-list h2, .markdown-list h3, .markdown-list h4 {
   font-size: 1em;
-  font-weight: normal;
+  font-weight: bold;
 }
 </style>
