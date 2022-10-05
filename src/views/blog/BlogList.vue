@@ -79,12 +79,12 @@ export default {
         <div class="card-body">
           <h5 class="card-title">{{ article.title }}</h5>
           <p class="text-start markdown-list" v-html="parseMarkdown(article.summary)"></p>
-          <router-link :to="generateArticleUrl(article.id)" class="btn btn-primary">查看全文 ...</router-link>
+          <router-link :to="generateArticleUrl(article.id)" class="btn btn-light">阅读更多</router-link>
         </div>
       </div>
     </div>
   </div>
-  <div class="row" v-if="loadSucceed">
+  <div class="row" v-if="loadSucceed && page.count > 1">
     <div class="col">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

@@ -6,15 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>果冻碎碎念</title>
     <style>
-        body {
+        #body {
             background-color: rgba(238, 238, 238, 1);
+            font-family: "Droid Sans Mono Slashed";
+            word-spacing: 0.2em;
+            letter-spacing: 0.01em;
+            line-height: 180%;
+            font-weight: normal;
+            font-style: normal;
         }
-        .card {
-            border-radius: 13px;
+        #body .card {
+            border-radius: 16px;
+            border: none;
+        }
+        #body .card p, #body .card ul, #body .card li, #body .card a {
+            margin-top: 0.5em;
+            margin-bottom: 0em;
+        }
+        #body .card h1, #body .card h2, #body .card h3, #body .card h4 {
+            margin-top: 0.5em;
+            margin-bottom: 0em;
         }
     </style>
 </head>
-<body>
+<body id="body">
 <div id="app"></div>
 <script type="module" src="/src/main.js"></script>
 </body>
