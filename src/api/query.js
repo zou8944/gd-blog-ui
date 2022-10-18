@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const host = "https://zou8944.com/api"
-// const host = "http://localhost:15000"
+const host = import.meta.env.VITE_HOST
+
+console.log(host)
 
 export function fetchBlogList(cid, pageSize, pageNo) {
     let url = host + "/blogs?pageSize=" + pageSize + "&pageNo=" + pageNo
