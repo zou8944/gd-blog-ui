@@ -27,7 +27,7 @@ export default {
 }
 </script>
 <template>
-  <div class="row py-2" v-if="toc">
+  <div class="row py-2 position-fixed start-0" v-if="toc" style="top: 30% !important; left: 1% !important; z-index: -1">
     <div class="col">
       <div class="card">
         <h5 class="card-title">目录</h5>
