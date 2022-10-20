@@ -36,7 +36,6 @@ export default {
     loadArticles(cid, pageSize, pageNo) {
       fetchBlogList(cid, pageSize, pageNo)
           .then(response => {
-            console.log(response)
             this.articles = response.data.data.articles
             this.page.count = Math.ceil(response.data.data.articleCount / this.page.size)
             this.page.currentNo = pageNo

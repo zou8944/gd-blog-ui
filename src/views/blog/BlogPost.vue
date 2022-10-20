@@ -27,15 +27,7 @@ export default {
             level: level,
             text: text
           });
-          return '<h'
-              + level
-              + ' id="'
-              + anchor
-              + '">'
-              + text
-              + '</h'
-              + level
-              + '>\n';
+          return '<h' + level + ' class="anchor" id="' + anchor + '">' + text + '</h' + level + '>\n';
         }
         return renderer
       })();

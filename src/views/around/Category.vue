@@ -13,7 +13,6 @@ export default {
     loadCategories(limit) {
       fetchCategoryList(limit)
           .then(response => {
-            console.log(response)
             this.categories = response.data.data
             this.loadSucceed = true
           })

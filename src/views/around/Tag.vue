@@ -11,7 +11,6 @@ export default {
     loadTags(limit) {
       fetchTagList(limit)
           .then(response => {
-            console.log(response)
             this.tags = response.data.data
           })
           .catch(error => {

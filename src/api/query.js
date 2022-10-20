@@ -2,8 +2,6 @@ import axios from "axios";
 
 const host = import.meta.env.VITE_HOST
 
-console.log(host)
-
 export function fetchBlogList(cid, pageSize, pageNo) {
     let url = host + "/blogs?pageSize=" + pageSize + "&pageNo=" + pageNo
     if (cid) {
